@@ -44,18 +44,18 @@ El valor que muestro es siempre uno de los tres números que escribió el usuari
 
 | Caso | Número 1 | Número 2 | Número 3 | Mayor calculado a mano |
 |---|---|---|---|---|
-| 1 (el mayor en primera posición) | _____ | _____ | _____ | _____ |
-| 2 (el mayor en segunda posición) | _____ | _____ | _____ | _____ |
-| 3 (el mayor en tercera posición) | _____ | _____ | _____ | _____ |
-| 4 (con un empate) | _____ | _____ | _____ | _____ |
-| 5 (con negativos) | _____ | _____ | _____ | _____ |
+| 1 (el mayor en primera posición) | 7| 2 | 1 | 7 |
+| 2 (el mayor en segunda posición) | 12 | 21 | 18 | 21 |
+| 3 (el mayor en tercera posición) | 45 | 12 | 52 | 52 |
+| 4 (con un empate) | 7 | 7 | 2 | 7 |
+| 5 (con negativos) | -2 | 1 | 0 | 1 |
 
 ## 5. Receta en pseudocódigo (Fase 2)
 <!-- Tu receta va en el archivo RECETA.md. Aquí solo responde las preguntas. -->
 
-**¿Probé mi receta a mano con mis 5 casos?** Sí / No
-**¿Tuve que corregirla? ¿Qué cambié?** _____
-**¿Cuántas versiones de mi receta escribí hasta la final?** _____
+**¿Probé mi receta a mano con mis 5 casos?** Sí 
+**¿Tuve que corregirla? ¿Qué cambié?** no
+**¿Cuántas versiones de mi receta escribí hasta la final?** 1
 **¿Se me ocurrió otra forma de resolver el problema? ¿Cuál? ¿Por qué elegí la que usé?**
 _____
 
@@ -67,54 +67,54 @@ g++ -Wall -Wextra -std=c++17 main.cpp -o numero_mayor
 ```
 
 ## 7. Ejemplo de ejecución (Fase 3)
-<!-- Pega aquí lo que muestra tu programa en pantalla con un caso de empate (por ejemplo 7, 7 y 3). -->
+Bienvenido: este programa te dice cuál de tres números es el mayor.
+Escribe el primer número: 7
+Escribe el segundo número: 7
+Escribe el tercer número: 2
+El mayor es: 7
 
-```
-_____
-```
 
 ## 8. De la receta al código (Fase 3)
 <!-- Para cada paso de TU receta, escribe la instrucción (o instrucciones) de C++ que lo implementa. Agrega las filas que necesites. -->
 
 | Paso de la receta | Instrucción de C++ que lo implementa |
 |---|---|
-| 1. Mensaje de bienvenida | _____ |
-| _____ | _____ |
-| _____ | _____ |
-| _____ | _____ |
-| _____ | _____ |
+| 1. Mensaje de bienvenida | `std::cout << "Bienvenido: ..." << std::endl;` |
+| leer el primer numero | `primero = leerDecimal("Escribe el primer número: ");` |
+| decidir cual es el mayor |  `if (primero >= segundo && primero >= tercero) {...} else if (...) {...} else {...}` |
+| mostrar el resultado | ´std::cout << "El mayor es: " << mayor << std::endl;` |
 
 **¿Hubo algún paso de mi receta que me costó traducir a C++? ¿Cuál y por qué?**
-_____
+El decidir el mayor, porque hay que escribir bien las condiciones con `&&` y usar `>=`
+para que los empates tengan resultado
 
 ## 9. Experimentos (Fase 3)
 
 **Experimento A: ¿qué te dijo el compilador con `if (a > b > c)`? ¿Qué mostró el programa con 3, 2 y 1? ¿Por qué?**
-_____
+El compilador avisó que `a > b > c` no tiene el significado matemático. Con 3, 2 y 1 la condición resultó falsa aunque 3 es el mayor: primero se calcula `3 > 2` (true = 1) y luego se compara `1 > 1`, que es falso. La forma correcta es `a > b && b > c`.
 
 **Experimento B: al cambiar `>=` por `>` (o al revés), ¿qué mostró el programa con 7, 7, 3 y con 5, 5, 5? ¿Por qué?**
-_____
+Con `>`, el caso 7, 7, 3 mostró 3 (incorrecto): ninguna de las dos primeras condiciones se cumple porque 7 > 7 es falso, y cae en el `else`. Con 5, 5, 5 mostró 5, pero solo de casualidad, porque el `else` toma el tercero. Con `>=` ambos casos funcionan. Dejé la versión con `>=`.
 
 **Experimento C (opcional): con `if (a = b)`, ¿qué te dijo el compilador? ¿Qué le pasó al valor de `a`?**
-_____
 
 ## 10. Tabla de pruebas (Fase 4)
 
 | Caso | Entradas | Esperado | Obtenido | ¿Pasó? |
 |---|---|---|---|---|
-| Mayor primero | 9, 4, 2 | 9 | _____ | _____ |
-| Mayor en medio | 4, 9, 2 | 9 | _____ | _____ |
-| Mayor al final | 2, 4, 9 | 9 | _____ | _____ |
-| Empate arriba (1.º y 2.º) | 7, 7, 3 | 7 | _____ | _____ |
-| Empate arriba (1.º y 3.º) | 7, 3, 7 | 7 | _____ | _____ |
-| Empate abajo | 8, 3, 3 | 8 | _____ | _____ |
-| Los tres iguales | 5, 5, 5 | 5 | _____ | _____ |
-| Todos negativos | -4, -1, -9 | -1 | _____ | _____ |
-| Con cero | -2, 0, -5 | 0 | _____ | _____ |
-| Decimales cercanos | 2.5, 2.7, 2.6 | 2.7 | _____ | _____ |
-| Texto | `abc` (luego 3), 1, 2 | vuelve a pedir el dato; 3 | _____ | _____ |
-| Caso propio 1 | _____ | _____ | _____ | _____ |
-| Caso propio 2 | _____ | _____ | _____ | _____ |
+| Mayor primero | 9, 4, 2 | 9 | 9 | si |
+| Mayor en medio | 4, 9, 2 | 9 | 9 | si |
+| Mayor al final | 2, 4, 9 | 9 | 9 | si |
+| Empate arriba (1.º y 2.º) | 7, 7, 3 | 7 | 7 | si |
+| Empate arriba (1.º y 3.º) | 7, 3, 7 | 7 | 7 | si |
+| Empate abajo | 8, 3, 3 | 8 | 8 | si |
+| Los tres iguales | 5, 5, 5 | 5 | 5 | si |
+| Todos negativos | -4, -1, -9 | -1 | -1 | si |
+| Con cero | -2, 0, -5 | 0 | 0 | si |
+| Decimales cercanos | 2.5, 2.7, 2.6 | 2.7 | 2.7 | si |
+| Texto | `abc` (luego 3), 1, 2 | vuelve a pedir el dato; 3 | pedir de nuevo | si |
+| Caso propio 1 | 120,124,125 | 125 | 125 | si |
+| Caso propio 2 | 2,8,1 | 8 | 8 | si |
 
 ## 11. Bitácora de mejoras (Fase 4)
 
@@ -134,33 +134,33 @@ _____
 ## 13. Reflexión final
 
 **¿Qué aprendí con esta práctica?**
-_____
+Que un problema facil tiene casos dificiles y que >= y > cambian resultados que a>b>c no funciona como en mate
 
 **Ahora que terminé, ¿qué cambiaría de mi proceso?**
-_____
+Enlistar los casos raros antes de escribir la receta
 
 **¿Qué fue lo más difícil y cómo lo resolví?**
-_____
+El main.cpp por que en la terminal me aparecian signos raros en lugar de las tildes y luego se las quite y aun aparecian los signos raros
 
 **¿Qué pregunta me quedó sin responder?**
-_____
+
 
 **¿Qué fue más fácil para mí: la Práctica 3 (receta propia con un paso de ejemplo), la 4 (receta ajena) o esta (todo desde cero)? ¿Por qué?**
-_____
+La receta ajena ya que me adapte a la frma que se penso de solucion asi que no podia elegir otra alterntiva 
 
 **¿Pensé en los empates antes de programar o los descubrí al probar?**
-_____
+Al probar
 
 ## 14. Lista de verificación antes de entregar (Fase 5)
 
-- [ ] Llené las secciones 1 a 13 (no quedan `_____`)
-- [ ] Escribí mi receta completa en `RECETA.md` antes de programar
-- [ ] Cada bloque de `main.cpp` tiene su comentario `// Paso N`, de acuerdo con mi receta
-- [ ] Mi programa compila sin advertencias
-- [ ] Probé todos los casos de la tabla, incluidos los empates
-- [ ] Hice los Experimentos A y B y dejé el código correcto al terminar
-- [ ] No modifiqué `utilerias.h`
-- [ ] Hice al menos 3 commits con mensajes claros
-- [ ] Hice `git push` y verifiqué mi fork en GitHub
-- [ ] Mi fork se llama `ulsa_ime_1_dp_numero_mayor` y el código está en `main.cpp`
-- [ ] Entregué el enlace de mi fork en Classroom
+- [/] Llené las secciones 1 a 13 (no quedan `_____`)
+- [/] Escribí mi receta completa en `RECETA.md` antes de programar
+- [/] Cada bloque de `main.cpp` tiene su comentario `// Paso N`, de acuerdo con mi receta
+- [/] Mi programa compila sin advertencias
+- [/] Probé todos los casos de la tabla, incluidos los empates
+- [/] Hice los Experimentos A y B y dejé el código correcto al terminar
+- [/] No modifiqué `utilerias.h`
+- [/] Hice al menos 3 commits con mensajes claros
+- [/] Hice `git push` y verifiqué mi fork en GitHub
+- [/] Mi fork se llama `ulsa_ime_1_dp_numero_mayor` y el código está en main.cpp`
+- [/] Entregué el enlace de mi fork en Classroom
